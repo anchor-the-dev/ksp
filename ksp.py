@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from bs4 import BeautifulSoup
 
 class Config:
     def __init__(self):
@@ -17,10 +18,21 @@ class Config:
         self.config_dir.mkdir(parents=True, exist_ok=True)
         self.def_config = {
         "folder": "~/ksp",
-        "template_folder": "~/.config/ksp/template/" 
-        }
+        "template_folder": "~/.config/ksp/template/"}
+        
         with open(self.config_path, "w") as f:
             json.dump(self.def_config, f, indent=2, ensure_ascii=False)
+
+        self.load_config()
+        self.template_folder.mkdir(parents=True, exist_ok=True)
+        with open(self.template_folder/"main.py","w") as f:
+            f.write("""import sys\n\nraw = [x.strip() for x in sys.stdin]\nprint(raw)""")
+
+class Parser:
+    def __init__(self):
+        pass
+    
+
 
 
 config = Config()
