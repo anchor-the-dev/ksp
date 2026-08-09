@@ -1,5 +1,3 @@
-load the config ~/.config/ksp/config.json
-in the config find "folder"
 create this structure folder/ročník/Z(ačátečnický) or H(lavní)/série/úloha 
 například:
 folder/38/Z/2/1

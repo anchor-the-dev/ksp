@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-from bs4 import BeautifulSoup
 
 class Config:
     def __init__(self):
@@ -28,9 +27,6 @@ class Config:
         with open(self.template_folder/"main.py","w") as f:
             f.write("""import sys\n\nraw = [x.strip() for x in sys.stdin]\nprint(raw)""")
 
-class Parser:
-    def __init__(self):
-        pass
     
 
 
