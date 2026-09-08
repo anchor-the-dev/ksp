@@ -1,6 +1,6 @@
 import sys
 
-if sys.stdin.isatty:
+if sys.stdin.isatty():
     print("Žádný stdin")
     sys.exit(1)
 

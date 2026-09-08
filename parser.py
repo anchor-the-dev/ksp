@@ -2,7 +2,7 @@ import sys, subprocess
 from bs4 import BeautifulSoup
 from pathlib import Path
 import requests, json
-
+import shutil
 
 
 
@@ -26,7 +26,6 @@ class Config:
         "folder": "~/ksp",
         "template_folder": "~/.config/ksp/template/",
         "cache": "~/.config/ksp/cache"}
-        
         with open(self.config_path, "w") as f:
             json.dump(self.def_config, f, indent=2, ensure_ascii=False)
 
@@ -150,11 +149,15 @@ class Parser:
             if not (base / ".git").exists():
                 subprocess.run(["git", "init"], cwd=base, capture_output=True)
 
-parser = Parser(f"https://ksp.mff.cuni.cz/h/ulohy/38/zadani1.html")
-parser.download()
-parser.create_folders()
+if __name__ =="__main__":
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "-genconfig":
+            c = Config()
+            c.generate_config()
+            del c
+            sys.exit(0)           
+    parser = Parser(input("Zadejte url nějaké série: \n"))
+    parser.download()
+    parser.create_folders()
 
 
-
-
-breakpoint()
